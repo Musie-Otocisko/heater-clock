@@ -48,7 +48,7 @@
         const padLeft = num => (`${num}`.length === 1) ? `0${num}` : `${num}`
         const calculateTime = (targetTime) => {
             const now = moment()
-            const defaultStart = now.clone().set({ hours: 6, minutes: 0 })
+            const defaultStart = now.clone().set({ hours: 5, minutes: 0 })
             const target = now.clone().set(targetTime)
             const start = target.clone().subtract({ hours: 2 })
 
