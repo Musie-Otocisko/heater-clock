@@ -10,12 +10,14 @@
         crossorigin="anonymous"></script>
 
     <style type="text/css">
-        #buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        body {
             margin: 0 auto;
-            max-width: 395px;
+            max-width: 390px;
+        }
+
+        #buttons {
+            float: left;
+            width: 100%;
         }
 
         #target {
@@ -28,6 +30,7 @@
         button {
             font-family: monospace;
             margin: 5px;
+            width: calc(25% - 10px);
             padding: 14px 16px;
         }
 
