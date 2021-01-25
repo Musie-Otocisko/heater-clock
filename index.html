@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>heater-clock</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous"></script>
+
+    <style type="text/css">
+        #buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 420px;
+        }
+
+        #target {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 4rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        button {
+            font-family: monospace;
+            margin: 5px;
+            padding: 14px 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="target"></div>
+    <div id="buttons"></div>
+
+    <script type="application/javascript">
+        const padLeft = num => (`${num}`.length === 1) ? `0${num}` : `${num}`
+        const calculateTime = (targetTime) => {
+            const now = moment()
+            const defaultStart = now.clone().set({ hours: 6, minutes: 0 })
+            const target = now.clone().set(targetTime)
+            const start = target.clone().subtract({ hours: 2 })
+
+            const diff = Math.abs(defaultStart.diff(start, 'minutes'))
+            const when = now.clone().subtract({ minutes: diff })
+
+            return when.format('HH:mm')
+        }
+
+        const target = document.getElementById('target')
+        const buttons = document.getElementById('buttons')
+        const makeButton = (hours, minutes) => {
+            const button = document.createElement('button')
+            button.innerText = `${padLeft(hours)}:${padLeft(minutes)}`
+            button.onclick = () => {
+                const targetTime = calculateTime({ hours, minutes })
+                target.innerText = `set timer to ${targetTime}`
+                window.scrollTo(0, 0)
+            }
+            buttons.appendChild(button)
+        }
+
+        const hours = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 ]
+
+        hours.forEach(hour => {
+            makeButton(hour,  0)
+            makeButton(hour, 15)
+            makeButton(hour, 30)
+            makeButton(hour, 45)
+        })
+
+    </script>
+</body>
+
+</html>
