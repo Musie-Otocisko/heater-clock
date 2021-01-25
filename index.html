@@ -32,10 +32,7 @@
             margin: 5px;
             width: calc(25% - 10px);
             padding: 14px 16px;
-        }
-
-        button:focus {
-            background: #8BC34A;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -60,12 +57,17 @@
 
         const target = document.getElementById('target')
         const buttons = document.getElementById('buttons')
+
+        const clearButtons = () => buttons.childNodes.forEach(btn => btn.style.background = '')
+
         const makeButton = (hours, minutes) => {
             const button = document.createElement('button')
             button.innerText = `${padLeft(hours)}:${padLeft(minutes)}`
             button.onclick = () => {
                 const targetTime = calculateTime({ hours, minutes })
                 target.innerText = `set timer to ${targetTime}`
+                clearButtons()
+                button.style.background = '#8BC34A'
                 window.scrollTo(0, 0)
             }
             buttons.appendChild(button)
