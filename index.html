@@ -58,7 +58,7 @@
         const target = document.getElementById('target')
         const buttons = document.getElementById('buttons')
 
-        const clearButtons = () => buttons.childNodes.forEach(btn => btn.style.background = '')
+        const clearButtons = () => buttons.childNodes.forEach(btn => btn.style.backgroundColor = '')
 
         const makeButton = (hours, minutes) => {
             const button = document.createElement('button')
@@ -67,7 +67,7 @@
                 const targetTime = calculateTime({ hours, minutes })
                 target.innerText = `set timer to ${targetTime}`
                 clearButtons()
-                button.style.background = '#8BC34A'
+                button.style.backgroundColor = '#8BC34A'
                 window.scrollTo(0, 0)
             }
             buttons.appendChild(button)
